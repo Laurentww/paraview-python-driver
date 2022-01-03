@@ -5,32 +5,6 @@ Driver which enables running of [ParaView](http://www.paraview.org) code nativel
 Allowing to integrate ParaView macro code in your python script and be executed in your Python environment, instead of the  `$ pvpython your_macro.py` usage.
 
 
-Installation
-============
-
-[install.sh](install.sh) Installs ParaView 5.10 and all missing dependencies onto your system. Into ~/local by default. 
-
-```
-$ ./install.sh --prefix <INSTALL_FOLDER>
-```
-
-The `--prefix` argument prescribes where ParaView and dependencies will be installed.
-
-Note: 
-- Installation requires significant time; more than 30 minutes on a 20-core system.
-- Ensure that $prefix/lib and prefix/lib64 are in `$LD_LIBRARY_PATH` after running install.sh
-
-[install.py](install.py) Installs ParaView into the Python environment which is used to run the script. It also automaticaly executes install.sh with the same supplied `--prefix` option:
-
-```
-$ <your/env/python3> install.py --prefix <INSTALL_FOLDER>
-```
-
-Installation into your Python environment is done by copying the installed ParaView Python packages and library files into the Python environment folder. 
-
-Another option to integrating ParaView into Python is to append the ParaView library folder to PYTHONPATH, however, this results in a segmentation error for the use case in driver.py
-
-
 Usage
 =====
 
@@ -43,14 +17,30 @@ Usage
 ```
 
 
-Compatibility
-=============
-Only tested with ParaView 5.10 on Ubuntu 20.04 and Python 3.8. 
+Installation
+============
 
-ParaView dependencies and versions used:
- - LLVM 13.0.0
- - Mesa 21.2.5 (+osmesa +llvmpipe)
- - libdrm 2.4.107
+[install.sh](install.sh) Installs ParaView 5.10 and all missing dependencies onto your system. Into ~/local by default. 
+
+```
+$ ./install.sh --prefix <INSTALL_FOLDER>
+```
+
+The `--prefix` argument prescribes where ParaView and dependencies will be installed.
+
+Note: 
+- Installation requires significant time. More than 30 minutes on a 20-core system.
+- After running install.sh, ensure that `$prefix/lib` and `$prefix/lib64` are in the `LD_LIBRARY_PATH` environment variable.
+
+[install.py](install.py) Installs ParaView into the Python environment which is used to run the script. It also automaticaly executes install.sh with the same supplied `--prefix` argument:
+
+```
+$ <your/env/python3> install.py --prefix <INSTALL_FOLDER>
+```
+
+Installation into your Python environment is done by copying the installed ParaView Python packages and library files into the Python environment folder. 
+
+Another option to integrating ParaView into Python is to append the ParaView library folder to the `PYTHONPATH` environment variable. however, this results in a segmentation fault for the use case in driver.py.
 
 
 Files
@@ -60,7 +50,15 @@ Files
  - [flow.dat](flow.dat) - example 2D simulation output data from SU2_CFD
 
 
-********************************************************************************
+Compatibility
+=============
+Only tested with ParaView 5.10 on Ubuntu 20.04 and Python 3.8. 
+
+ParaView dependencies and versions used:
+ - LLVM 13.0.0
+ - Mesa 21.2.5 (+osmesa +llvmpipe)
+ - libdrm 2.4.107
+ 
 
 ParaView
 ========
