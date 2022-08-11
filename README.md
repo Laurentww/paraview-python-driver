@@ -2,13 +2,15 @@ paraview-python-driver
 ============
 Driver which enables running of [ParaView](http://www.paraview.org) code natively in your Python environment.
 
-Allowing to integrate ParaView macro code in your python script and be executed in your Python environment, instead of the  `$ pvpython your_macro.py` usage.
+Allowing to integrate ParaView macro code in your python script and be executed from your Python environment, instead of the `$ pvpython your_macro.py` usage.
 
 
 Usage
 =====
 
 ```
+.. code-block:: python
+
     with ParaViewDriver('flow.dat', out_filetype='png') as pv_driver:
         pv_driver.print_mesh_wireframe()
         pv_driver.print_quality(quad='Edge Ratio')
@@ -23,19 +25,23 @@ Installation
 [install.sh](install.sh) Installs ParaView 5.10 and all missing dependencies onto your system. Into ~/local by default. 
 
 ```
-$ ./install.sh --prefix <INSTALL_FOLDER>
+.. code-block:: console
+
+    $ ./install.sh --prefix <FULL_PATH_TO_INSTALL_FOLDER>
 ```
 
 The `--prefix` argument prescribes where ParaView and dependencies will be installed.
 
 Note: 
-- Installation requires significant time. More than 30 minutes on a 20-core system.
+- Installation by building from source requires significant time. More than 30 minutes on a 20-core system.
 - After running install.sh, ensure that `$prefix/lib` and `$prefix/lib64` are in the `LD_LIBRARY_PATH` environment variable.
 
-[install.py](install.py) Installs ParaView into the Python environment which is used to run the script. It also automaticaly executes install.sh with the same supplied `--prefix` argument:
+[install.py](install.py) Installs ParaView into the Python environment which is used to run the script. It also automatically executes install.sh with the same supplied `--prefix` argument:
 
 ```
-$ <your/env/python3> install.py --prefix <INSTALL_FOLDER>
+.. code-block:: console
+
+    $ <your/env/python3> install.py --prefix <FULL_PATH_TO_INSTALL_FOLDER>
 ```
 
 Installation into your Python environment is done by copying the installed ParaView Python packages and library files into the Python environment folder. 
@@ -66,5 +72,4 @@ ParaView
 [ParaView](http://www.paraview.org) is an open-source, multi-platform data analysis and
 visualization application based on [Visualization Toolkit (VTK)](http://www.vtk.org).
 
-ParaView is distributed under the BSD 3-clause License. For licenses of ParaView dependencies, refer to
-http://www.paraview.org/paraview-license/.
+ParaView is distributed under the BSD 3-clause License. For licenses of ParaView dependencies, refer to http://www.paraview.org/paraview-license/.
